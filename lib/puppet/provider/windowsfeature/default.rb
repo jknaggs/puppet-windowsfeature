@@ -15,7 +15,7 @@ Puppet::Type.type(:windowsfeature).provide(:default) do
   confine :kernel => :windows
 
   def self.instances
-    features = JSON.parse(ps('Get-WindowsFeature | ConvertTo-JSON' -compress))
+    features = JSON.parse(ps('Get-WindowsFeature | ConvertTo-JSON -compress'))
     features.map do |feature|
       name = feature['Name'].downcase
       installed = feature['InstallState']
